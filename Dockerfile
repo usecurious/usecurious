@@ -1,14 +1,27 @@
+# Application Dockerfile
+
+# Set the base image to Latest Node
 FROM node:latest
 
-RUN mkdir -p /usr/src/app
+# System Dependencies
+RUN apt-get update
+RUN apt-get install -y build-essential git tar python libkrb5-dev
+RUN apt-get autoclean
+
+# Create Install Folder
+RUN ["mkdir", "/install"]
+
+ADD ["./package.json", "/install"]
+WORKDIR /install
+RUN npm install --verbose
+ENV NODE_PATH=/install/node_modules
+
+# Change Working Directory to App Folder
 WORKDIR /usr/src/app
-
-RUN apt-get update && apt-get install -y libkrb5-dev && rm -rf /var/lib/apt/lists/*
-
-ADD package.json /usr/src/app/
-RUN npm install
-
 ADD . /usr/src/app
 
+# Open 3000 in dev
 EXPOSE 3000
-CMD [ "npm", "start" ]
+
+# Run Node Application
+ENTRYPOINT  ["node", "/usr/src/app/keystone.js"]

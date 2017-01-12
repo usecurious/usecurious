@@ -1,3 +1,5 @@
+db:
+  image: mongo
 web:
   build: .
   links:
@@ -5,6 +7,6 @@ web:
   ports:
     - "3000:3000"
   volumes:
-      - .:/usr/src/app
-db:
-  image: mongo
+    - .:/usr/src/app
+  environment:
+    - MONGO_URI=db
