@@ -1,7 +1,7 @@
 # Application Dockerfile
 
 # Set the base image to Latest Node
-FROM node:latest
+FROM node:6.9.4
 
 # System Dependencies
 RUN apt-get update

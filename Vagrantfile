@@ -5,7 +5,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "ubuntu/trusty64"
   config.vm.hostname = "curious-api"
-  config.vm.network "forwarded_port", guest: 3000, host: 3080
 
   config.vm.provider "virtualbox" do |vb|
      vb.memory = 4096
@@ -15,4 +14,5 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :docker
   config.vm.provision :docker_compose, yml: "/home/vagrant/curious/docker-compose.yml", run: "always"
+  config.vm.network "forwarded_port", guest: 3000, host: 3000
 end
