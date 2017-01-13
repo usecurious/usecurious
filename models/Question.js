@@ -1,18 +1,31 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
+var moment = require('moment');
 
 /**
- * User Model
+ * Question Model
  * ==========
  */
-var Question = new keystone.List('Question');
+var Question = new keystone.List('Question', {
+    autokey: { path: 'slug', from: 'title', unique: true },
+    map: { name: 'title' },
+    defaultSort: '-createdAt'
+});
+
+var DefaultLaunchDate = moment()
+    .add(1, 'days')
+    .startOf('day')
+    .add(10, 'hours')
+    .add(30, 'minutes')
 
 Question.add({
-    question: { type: Types.Text, required: true, index: true },
+    title: { type: String, required: true },
+    createdAt: { type: Date, default: Date.now },
+    launchDate: { type: Types.Date, initial: true, default: DefaultLaunchDate }
 });
 
 /**
  * Registration
  */
-Question.defaultColumns = 'question';
+Question.defaultColumns = 'title';
 Question.register();
