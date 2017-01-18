@@ -45,6 +45,9 @@ body {
 }
 .heading + .paragraph {
   margin-top: 30px;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 900;
 }
 .subheading + .paragraph {
   margin-top: 10px;
@@ -151,7 +154,7 @@ p.paragraph {
 .sidedevices {
   position: relative;
 }.header {
-	padding: 20px 0 60px 0;
+	padding: 40px 0 60px 0;
 	overflow: hidden;
 }
 .header .sidedevices {
@@ -239,11 +242,19 @@ p.paragraph {
 	.ctas-button-2 {
 		margin: 10px 0 0 0;
 	}
-}.footer {
+}
+.footer a:link {
+	color: #ffffff;
+}
+.footer {
 	padding: 90px 0 45px;
 }
 .footer .footer-nav {
 	padding-top: 90px;
+}
+.footer .footer-nav .spanstyle{
+	opacity: 0.4;
+	font-size: 14px;
 }
 .footer .nav-link {
 	display: inline-block;
